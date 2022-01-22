@@ -14,8 +14,11 @@ from django.views import View
 from django.shortcuts import redirect
 from django.db import transaction
 
+from django.db.models import Q
+
 from .models import Task
 from .forms import PositionForm
+
 
 
 class CustomLoginView(LoginView):
@@ -53,6 +56,7 @@ class TaskList(LoginRequiredMixin, ListView):
         context = super().get_context_data(**kwargs)
         context['tasks'] = context['tasks'].filter(user=self.request.user)
         context['count'] = context['tasks'].filter(complete=False).count()
+        context['tokens'] = context['tasks'].filter(complete=True).filter(worth=1).count() + 2*context['tasks'].filter(complete=True).filter(worth=2).count() + 3*context['tasks'].filter(complete=True).filter(worth=3).count() + 4*context['tasks'].filter(complete=True).filter(worth=4).count() + 5*context['tasks'].filter(complete=True).filter(worth=5).count() + 6*context['tasks'].filter(complete=True).filter(worth=6).count() + 7*context['tasks'].filter(complete=True).filter(worth=7).count() + 8*context['tasks'].filter(complete=True).filter(worth=8).count()
 
         search_input = self.request.GET.get('search-area') or ''
         if search_input:
@@ -72,7 +76,7 @@ class TaskDetail(LoginRequiredMixin, DetailView):
 
 class TaskCreate(LoginRequiredMixin, CreateView):
     model = Task
-    fields = ['title', 'description', 'complete']
+    fields = ['title', 'description', 'complete', 'worth']
     success_url = reverse_lazy('tasks')
 
     def form_valid(self, form):
@@ -82,7 +86,7 @@ class TaskCreate(LoginRequiredMixin, CreateView):
 
 class TaskUpdate(LoginRequiredMixin, UpdateView):
     model = Task
-    fields = ['title', 'description', 'complete']
+    fields = ['title', 'description', 'complete', 'worth']
     success_url = reverse_lazy('tasks')
 
 

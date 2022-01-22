@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import MaxValueValidator
 # Create your models here.
+
 
 
 class Task(models.Model):
@@ -10,6 +12,7 @@ class Task(models.Model):
     description = models.TextField(null=True, blank=True)
     complete = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
+    worth = models.PositiveSmallIntegerField(default=1, validators=[MaxValueValidator(8),])
 
     def __str__(self):
         return self.title

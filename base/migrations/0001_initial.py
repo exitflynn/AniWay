@@ -23,6 +23,7 @@ class Migration(migrations.Migration):
                 ('complete', models.BooleanField(default=False)),
                 ('created', models.DateTimeField(auto_now_add=True)),
                 ('user', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                ('worth', models.PositiveSmallIntegerField(default=1))
             ],
             options={
                 'ordering': ['-complete'],

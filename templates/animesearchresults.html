@@ -1,0 +1,10 @@
+<form method="GET" action="">
+    <input type="text" name="name" placeholder="Search Anime: ">
+  </form>
+
+{% block results %}
+{%for anime in animes%}
+<div><h5><a href="/anime/watch/?aid={{anime.animeid}}">{{anime.name}}</a></h5></div>
+
+{%endfor%}
+{% endblock %}

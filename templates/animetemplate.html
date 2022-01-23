@@ -1,9 +1,13 @@
+{%extends 'main.html' %}
+{% block content %}
 <a href='/anime'>Back</a>
 
-{{animename}}
+Coins Left: {{coins}}
 
-
+<center><img src = {{img}}></center>
+<center><h1>{{animename}}</h1></center>
 {%for i in l%}
 <div><h5><a href="/anime/watch/v/?aid={{animeid}}&ep={{i}}">Episode {{i}}</a></h5></div>
 
 {%endfor%}
+{% endblock %}

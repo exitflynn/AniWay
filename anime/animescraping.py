@@ -70,11 +70,12 @@ class animedealer():
             animename = str(soup.select('title'))[8:-9]
             last_ep = int(str(soup.select('a[href="\#"]')[1]).split()[2][8:-1])
             first_ep = int(str(soup.select('a[href="\#"]')[1]).split()[3][10:-1])
-            return (last_ep, animename[:-13])
+            img = soup.find("div", {"class":"anime_info_body_bg"}).img.get('src')
+            return (last_ep, animename[:-13], img)
         # except AttributeError:
         #     return {"status":"400", "reason":"Invalid animeid"}
         except requests.exceptions.ConnectionError:
-            return {"status":"404", "reason":"Check the host's network Connection"}
+            return {"status":"404", "reason":"Check the host's network Connection", 'str':' '}
 
     def get_episodes_link(animeid, episode_num):
         try:

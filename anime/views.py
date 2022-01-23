@@ -5,22 +5,6 @@ from anime.animescraping import animedealer
 
 from django.http import HttpResponse
 
-def getCoins():
-    a = open('anime/tokensEarned.txt', 'r')
-    b = open('anime/coinsSpent.txt', 'r')
-    tokensEarned = int(a.read())
-    coinsSpent = int(b.read())
-    coins = tokensEarned-coinsSpent
-    a.close(); b.close()
-    return coins
-
-
-animes = [
-    {'rank' : 1, 'name' : 'AOT'},
-    {'rank' : 2, 'name' : 'Code Geass'},
-    {'rank' : 3, 'name' : 'Steins;Gate'},
-]
-
 def AnimeList(request):
     name = request.GET.get('name') if request.GET.get('name') != None else ''
     animes = animedealer.get_search_results(name)
@@ -28,7 +12,7 @@ def AnimeList(request):
         error = True
     else:
         error = False
-    context = {'animes' : animes, 'error' : error}
+    context = {'animes' : animes, 'error' : error, 'coins':getCoins()}
     return render(request, 'animesearchresults.html', context)
 
 
@@ -36,10 +20,11 @@ def AnimeEpisodes(request):
     # return HttpResponse('Anime List Here?')       
     if request.GET.get('aid') != None:
         aname = request.GET.get('aid')
-        (l, animename) = animedealer.get_anime_details(aname)
+        (l, animename, img) = animedealer.get_anime_details(aname)
     else:
-        l, aname, animename = (0, '', 'ERROR')
-    context = {'animename': animename, 'l': list(range(1,l+1)), 'animeid': aname}
+        l, aname, animename, img = (0, '', 'ERROR', '')
+    coins = getCoins()
+    context = {'animename': animename, 'l': list(range(1,l+1)), 'animeid': aname, 'coins':coins, 'img' : img}
     return render(request, 'animetemplate.html', context)
 
 def AnimeViewer(request):
@@ -58,3 +43,11 @@ def AnimeViewer(request):
     else:
         context = {'episodelink': episodelink, 'epnum': epnum, 'aid': aid, 'coins' : coins}
         return render(request, 'animeviewer.html', context)
+def getCoins():
+    a = open('anime/tokensEarned.txt', 'r')
+    b = open('anime/coinsSpent.txt', 'r')
+    tokensEarned = int(a.read())
+    coinsSpent = int(b.read())
+    coins = tokensEarned-coinsSpent
+    a.close(); b.close()
+    return coins

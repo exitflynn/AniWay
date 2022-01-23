@@ -1,13 +1,14 @@
 {%extends 'main.html' %}
 {% block content %}
-<a href='/anime'>Back</a>
 
+<p align="left" padding-left:10px><a href='/anime'>Back</a></p>
 <p align="right" padding-right:10px><b>Coins Left: {{coins}}</b></p>
 
 <center><img src = {{img}}></center>
 <center><h1>{{animename}}</h1></center>
 {%for i in l%}
-<div><h5><a href="/anime/watch/v/?aid={{animeid}}&ep={{i}}">Episode {{i}}</a></h5></div>
+<div><h5><center><a href="/anime/watch/v/?aid={{animeid}}&ep={{i}}">Episode {{i}}</a></center></h5></div>
 
 {%endfor%}
+<hr>
 {% endblock %}

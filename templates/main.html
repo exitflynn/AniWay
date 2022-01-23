@@ -7,18 +7,19 @@
     <title>AniWay</title>
     <style>
         body {
-            background-color:  #FAFAFA;
+            background: rgb(37,0,32);
+background: linear-gradient(90deg, rgba(37,0,32,1) 0%, rgba(164,23,23,1) 23%, rgba(38,7,133,1) 77%);
             font-family:Verdana, Geneva, Tahoma, sans-serif;
             padding-top:  50px;
             max-width: 550px;
             margin: auto;
-            box-shadow: 5px 10px #888888;
+            box-shadow: 5px 10px #020a36;
         }
         
         .content {
             max-width: 550px;
             margin: auto;
-            box-shadow: 5px 10px #888888;background: rgb(63,94,251);
+            box-shadow: 5px 10px #020a36;background: rgb(63,94,251);
 background: linear-gradient(270deg, rgba(63,94,251,1) 0%, rgba(215,44,111,1) 100%);
         }
         p {
@@ -27,10 +28,14 @@ background: linear-gradient(270deg, rgba(63,94,251,1) 0%, rgba(215,44,111,1) 100
         a p {
          padding: 5px;
         }
+        a {
+            font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            color:rgba(38,7,133,1)
+        }
     </style>
 </head>
 <body>
-    <center><a href='/'x><p>Go To Tasks</p></a></center>
+    <center><a href='/'x><p style="color:rgb(241, 24, 24)">Go To Tasks</p></a></center>
     <div class="content">
         {%block content%}
         {%endblock%}

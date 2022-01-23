@@ -1,7 +1,7 @@
 {% extends 'main.html' %}
 {% block content %}
 <hr>
-<h5 align=right>Coins Remaining: {{coins}}</5>
+<h5 align=right style="padding-right: 5%;">Coins Remaining: {{coins}}</h5>
 <h1 align="center" style="font-size: 50px">AniWay</h1>
 <div class="header-bar">
   
@@ -15,7 +15,7 @@
     <input type="text" name="name" placeholder="Search Anime: ">
 </form>
 {%for anime in animes%}
-<div><h5><center><a href="/anime/watch/?aid={{anime.animeid}}">{{anime.name}}</a></center></h5></div>
+<div><h4 -webkit-text-stroke: 1px black;><center><a href="/anime/watch/?aid={{anime.animeid}}" style="font-family: fantasy; color:rgb(71, 8, 32); text-shadow:black;">{{anime.name}}</a></center></h4></div>
 
 {% endfor %}
 <hr>

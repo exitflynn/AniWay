@@ -1,21 +1,22 @@
 {% extends 'main.html' %}
 {% block content %}
-
+<hr>
+<h5 align=right>Coins Remaining: {{coins}}</5>
 <h1 align="center" style="font-size: 50px">AniWay</h1>
 <div class="header-bar">
   
   <div>
 
-      <h1>Hello, {{request.user|title}}</h1>
+      <center><h3>Hello, {{request.user|title}}</h3></center>
     </div>
 </div>
 
 <form method="GET" action="" align='center'>
     <input type="text" name="name" placeholder="Search Anime: ">
-  </form>
-<h3 align=right>Coins Remaining: {{coins}}</h3>
+</form>
 {%for anime in animes%}
-<div><h5><a href="/anime/watch/?aid={{anime.animeid}}">{{anime.name}}</a></h5></div>
+<div><h5><center><a href="/anime/watch/?aid={{anime.animeid}}">{{anime.name}}</a></center></h5></div>
 
 {% endfor %}
+<hr>
 {% endblock %}

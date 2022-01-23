@@ -18,19 +18,19 @@
         .content {
             max-width: 550px;
             margin: auto;
-            background-color: rgb(36, 198, 209);
-            box-shadow: 5px 10px #888888;
+            box-shadow: 5px 10px #888888;background: rgb(63,94,251);
+background: linear-gradient(270deg, rgba(63,94,251,1) 0%, rgba(215,44,111,1) 100%);
         }
         p {
          padding: 35px;
         }
-        a {
-         padding: 35px;
+        a p {
+         padding: 5px;
         }
     </style>
 </head>
 <body>
-    <center><a href='/'>Go To Tasks</a></center>
+    <center><a href='/'x><p>Go To Tasks</p></a></center>
     <div class="content">
         {%block content%}
         {%endblock%}

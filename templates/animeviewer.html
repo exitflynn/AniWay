@@ -1,3 +1,10 @@
-huzza
-{{aid}} {{epnum}} {{episodelink.link}}
-<iframe src="{{episodelink.link}}"></iframe>
+{%extends 'main.html' %}
+<!-- huzza
+{{aid}} {{epnum}} {{episodelink.link}} -->
+<h1>hooho</h1>
+{%block content%}
+
+<div class="videoWrapper">
+<center><iframe src="{{episodelink.link}}" allowfullscreen=true></iframe></center>
+</div>
+{%endblock%}

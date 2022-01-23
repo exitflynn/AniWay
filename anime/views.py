@@ -5,6 +5,16 @@ from anime.animescraping import animedealer
 
 from django.http import HttpResponse
 
+def getCoins():
+    a = open('anime/tokensEarned.txt', 'r')
+    b = open('anime/coinsSpent.txt', 'r')
+    tokensEarned = int(a.read())
+    coinsSpent = int(b.read())
+    coins = tokensEarned-coinsSpent
+    a.close(); b.close()
+    return coins
+
+
 animes = [
     {'rank' : 1, 'name' : 'AOT'},
     {'rank' : 2, 'name' : 'Code Geass'},
@@ -12,7 +22,6 @@ animes = [
 ]
 
 def AnimeList(request):
-    # return HttpResponse('Anime List Here?')
     name = request.GET.get('name') if request.GET.get('name') != None else ''
     animes = animedealer.get_search_results(name)
     if 'status' in animes: 
@@ -37,5 +46,15 @@ def AnimeViewer(request):
     aid = request.GET.get('aid') if request.GET.get('aid') != None else ''
     epnum = request.GET.get('ep') if request.GET.get('ep') != None else 0
     episodelink = animedealer.get_episodes_link(aid, epnum)
-    context = {'episodelink': episodelink, 'epnum': epnum, 'aid': aid}
-    return render(request, 'animeviewer.html', context)
+    
+    b = int(open('anime/coinsSpent.txt', 'r').read())
+    b+=1
+    c = open('anime/coinsSpent.txt', 'w')
+    c.write(str(b)); c.close()
+    coins = getCoins()
+    if coins <= 0:
+        # return HttpResponse('You Broke.')
+        return render(request, 'goback.html')
+    else:
+        context = {'episodelink': episodelink, 'epnum': epnum, 'aid': aid, 'coins' : coins}
+        return render(request, 'animeviewer.html', context)

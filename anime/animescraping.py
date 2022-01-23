@@ -115,7 +115,10 @@ class animedealer():
             #     episode_res_link.update({f"{quality_name}":f"{downlink}"})
             # episode_res_link['animeid'] = animeid; episode_res_link['episode number'] = episode_num
             # return episode_res_link
-            link = str(soup.find_all(attrs={'rel':"14"})[0]).split()[1][12:-1]
+            # link = "https:" + str(soup.find_all(attrs={'rel':"100"})).split()[1][12:-1] ALL GOGO
+            # link = str(soup.find_all(attrs={'rel':"14"})[0]).split()[1][12:-1] DOOD.WATCH
+            # link = str(soup.find_all(attrs={'rel':"29"})[0]).split()[1][12:-1] #FEMBED
+            link = str(soup.find_all(attrs={'rel':"13"})[0]).split()[1][12:-1] #streamSB
             return {"link":link}
         except AttributeError:
             return {"status":"400", "reason":"Invalid animeid or episode_num", 'animeid' : animeid, 'episode number': episode_num}

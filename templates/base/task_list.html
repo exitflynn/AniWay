@@ -4,7 +4,7 @@
 <div class="header-bar">
     <div>
         <h1>Hello {{request.user|title}}</h1>
-        <h3 style="margin:0">You have <i>{{count}}</i> incomplete task{{ count|pluralize:"s" }} and {{tokens}} token</h3>
+        <h3 style="margin:0">You have {{count}} incomplete task{{ count|pluralize:"s" }} and {{tokens}} token</h3>
     </div>
     {% if request.user.is_authenticated %}
     <a href="{% url 'logout' %}">Logout</a> {% else %}
@@ -12,7 +12,7 @@
 </div>
 
 <div>
-<center><a href = "anime/">GO TO ANIMELAND!!</a></center>
+<center><a href = "anime/"><h2 style="color:darkviolet;border:2px solid violet;"> GO TO ANIMELAND!!</h2></a></center>
 </div>
 
 <div id="search-add-wrapper">

@@ -1,3 +1,4 @@
+from lib2to3.pgen2 import token
 from django.shortcuts import render, redirect
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
@@ -15,6 +16,7 @@ from django.shortcuts import redirect
 from django.db import transaction
 
 from django.db.models import Q
+from sqlparse import tokens
 
 from .models import Task
 from .forms import PositionForm
@@ -57,6 +59,12 @@ class TaskList(LoginRequiredMixin, ListView):
         context['tasks'] = context['tasks'].filter(user=self.request.user)
         context['count'] = context['tasks'].filter(complete=False).count()
         context['tokens'] = context['tasks'].filter(complete=True).filter(worth=1).count() + 2*context['tasks'].filter(complete=True).filter(worth=2).count() + 3*context['tasks'].filter(complete=True).filter(worth=3).count() + 4*context['tasks'].filter(complete=True).filter(worth=4).count() + 5*context['tasks'].filter(complete=True).filter(worth=5).count() + 6*context['tasks'].filter(complete=True).filter(worth=6).count() + 7*context['tasks'].filter(complete=True).filter(worth=7).count() + 8*context['tasks'].filter(complete=True).filter(worth=8).count()
+        
+        a = open('anime/tokensEarned.txt', 'w')
+        tokensEarned = context['tokens']
+        a.write(str(tokensEarned))
+        coinsSpent = int(open('anime/coinsSpent.txt', 'r').read())
+        context['tokens'] = tokensEarned - coinsSpent
 
         search_input = self.request.GET.get('search-area') or ''
         if search_input:

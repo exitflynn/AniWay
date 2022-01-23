@@ -1,6 +1,14 @@
 {% extends 'main.html' %}
 {% block content %}
+
 <h1 align="center" style="font-size: 50px">AniWay</h1>
+<div class="header-bar">
+  
+  <div>
+
+      <h1>Hello, {{request.user|title}}</h1>
+    </div>
+</div>
 
 <form method="GET" action="" align='center'>
     <input type="text" name="name" placeholder="Search Anime: ">
